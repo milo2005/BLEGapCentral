@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import unicauca.movil.blecentral.R;
@@ -16,13 +17,14 @@ import unicauca.movil.blecentral.R;
 
 public class DeviceAdapter extends BaseAdapter {
     Context context;
-    List<BleItem> data;
+    List<DeviceItem> data;
 
-    public DeviceAdapter(Context context, List<BleItem> data) {
+    public DeviceAdapter(Context context) {
         this.context = context;
-        this.data = data;
+        this.data = new ArrayList<>();
     }
 
+    //region Adapter Methods
     @Override
     public int getCount() {
         return data.size();
@@ -47,7 +49,7 @@ public class DeviceAdapter extends BaseAdapter {
         else
             v = convertView;
 
-        BleItem item = (BleItem) getItem(position);
+        DeviceItem item = (DeviceItem) getItem(position);
 
         TextView txt = (TextView) v.findViewById(R.id.title);
         txt.setText(item.getTitle());
@@ -57,15 +59,16 @@ public class DeviceAdapter extends BaseAdapter {
 
         return v;
     }
+    //endregion
 
-    public class BleItem{
+    public void addItem(DeviceItem item){
+        data.add(item);
+        notifyDataSetChanged();
+    }
 
-        public static final int TYPE_DEVICE=0;
-        public static final int TYPE_SERVICE=1;
-        public static final int TYPE_CHARACTERISTIC=2;
+    public class DeviceItem{
 
         String title, subtitle;
-        int type;
 
         public String getTitle() {
             return title;
