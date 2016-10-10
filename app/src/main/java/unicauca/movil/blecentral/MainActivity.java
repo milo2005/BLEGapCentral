@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     static final ParcelUuid SERVICE_UUID = ParcelUuid.fromString("0000b81d-0000-1000-8000-00805f9b34fb");
     
@@ -30,16 +30,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         state.setOnClickListener(this);
 
         list = (ListView) findViewById(R.id.list);
-        list.setOnItemClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
 }
